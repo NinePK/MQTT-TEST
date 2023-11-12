@@ -1,0 +1,27 @@
+version: '3'
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - "8000:8000"
+    environment:
+      MONGODB_URL: "mongodb://mongo:27017"
+    depends_on:
+      - mongo
+  mqtt:
+    build:
+      context: .
+      dockerfile: Dockerfile.mqtt
+    depends_on:
+      - app
+  emqx:
+    image: emqx/emqx:latest
+    ports:
+      - "1883:1883"
+      - "8081:8081"
+  mongo:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
