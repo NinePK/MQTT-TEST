@@ -1,3 +1,0 @@
-fastapi==0.68.0
-fastapi-mqtt==0.1.1
-uvicorn==0.15.0
